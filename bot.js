@@ -218,7 +218,6 @@ app.post('/ai', (req, res) => {
         //parsing the json response from RR cloud
         console.log("loukyam");
         console.log(body);
-        body = JSON.parse(body);
         console.log("powerranger");
         console.log(GLOBAL_PRODUCT_NAME);
         if (body.placements[0].numFound == "0") {
