@@ -735,6 +735,7 @@ function facetFilter(sid, pLoad){
     })
     .catch(function(err){
       console.log('Pavan api.ai, ERROR 7');
+      console.log(err);
     });
 
 }
