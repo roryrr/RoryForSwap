@@ -211,6 +211,7 @@ app.post('/ai', (req, res) => {
                       console.log('Pavan api.ai, ERROR 2');
         } else {
           //parsing the json response from RR cloud
+          console.log("loukyam");
           body = JSON.parse(body);
           console.log("powerranger");
           console.log(GLOBAL_PRODUCT_NAME);
