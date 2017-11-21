@@ -709,25 +709,33 @@ function facetFilter(sid, pLoad){
         rows= "9";
   var  requesting = req_url + "?apiClientKey=" + apiClientKey + "&userId=" + userId + "&sessionId=" + sessionId + "&placements=" + placements + "&lang=en&"+ "start=" + start + "&rows=9&query=" + query + "&filter=" + GLOBAL_PRODUCT_BRAND + "&filter=" + GLOBAL_PRODUCT_GENDER + "&filter=" + GLOBAL_PRODUCT_COLOR + "&filter=" + GLOBAL_PRODUCT_SIZE + "&facet=" + facet;
   console.log(requesting);
-    request(requesting, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        //parsing the json response from RR cloud
-        body = JSON.parse(body);
-        console.log("powerranger tori");
-        facet_array = body.placements[0].facets[0].values;
-        if (facet_array.length == 1) {
-            sendFacetOptions(sid, facet_array.slice(0,8), pName, facet);
-        }
-        else {
-            sendFacetOptions(sid, facet_array.slice(facetStart,facetStart+8), pName, facet);
-        }
 
-              // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
-    // The Description is:  "descriptive string"
-    } else {
-        console.log('Pavan api.ai, ERROR 7');
-    }
-});
+  var options = {
+    uri: requesting,
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; A1 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.116 Mobile Safari/537.36'
+      },
+    json: true
+  };
+  reqPromise(options)
+    .then(function(body){
+      //parsing the json response from RR cloud
+      body = JSON.parse(body);
+      console.log("powerranger tori");
+      facet_array = body.placements[0].facets[0].values;
+      if (facet_array.length == 1) {
+          sendFacetOptions(sid, facet_array.slice(0,8), pName, facet);
+      }
+      else {
+          sendFacetOptions(sid, facet_array.slice(facetStart,facetStart+8), pName, facet);
+      }
+
+            // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
+  // The Description is:  "descriptive string"
+    })
+    .catch(function(err){
+      console.log('Pavan api.ai, ERROR 7');
+    });
 
 }
 function sendFacetOptions(recipientId, arrayHere, pName, facet){
