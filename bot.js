@@ -206,27 +206,34 @@ app.post('/ai', (req, res) => {
           rows= "9";
     var  requesting = req_url + "?apiClientKey=" + apiClientKey + "&userId=" + userId + "&sessionId=" + sessionId + "&placements=" + placements + "&lang=en&start=0&rows=9&query=" + query + "&filter=" + GLOBAL_PRODUCT_BRAND + "&filter=" + GLOBAL_PRODUCT_GENDER + "&filter=" + GLOBAL_PRODUCT_COLOR + "&filter=" + GLOBAL_PRODUCT_SIZE;
     console.log(requesting);
-      request(requesting, function (error, response, body) {
-            if (error) {
-                      console.log('Pavan api.ai, ERROR 2');
-        } else {
-          //parsing the json response from RR cloud
-          console.log("loukyam");
-          console.log(body);
-          body = JSON.parse(body);
-          console.log("powerranger");
-          console.log(GLOBAL_PRODUCT_NAME);
-          if (body.placements[0].numFound == "0") {
-            sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.")
-          }
-          else{
-                rr_array = body.placements[0].docs;
-                sendGenericMessageForSearch(GLOBAL_ID, rr_array);
-                setTimeout(function() { v2_sendFilters(GLOBAL_ID, GLOBAL_PRODUCT_NAME) }, 3000);
-                // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
-              }
-      // The Description is:  "descriptive string"
+    var options = {
+      uri: requesting,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; A1 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.116 Mobile Safari/537.36'
+        },
+      json: true
+    };
+    reqPromise(options)
+      .then(function(body){
+        //parsing the json response from RR cloud
+        console.log("loukyam");
+        console.log(body);
+        body = JSON.parse(body);
+        console.log("powerranger");
+        console.log(GLOBAL_PRODUCT_NAME);
+        if (body.placements[0].numFound == "0") {
+          sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.")
         }
+        else{
+              rr_array = body.placements[0].docs;
+              sendGenericMessageForSearch(GLOBAL_ID, rr_array);
+              setTimeout(function() { v2_sendFilters(GLOBAL_ID, GLOBAL_PRODUCT_NAME) }, 3000);
+              // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
+            }
+    // The Description is:  "descriptive string"
+      })
+      .catch(function(err){
+        console.log('Pavan api.ai, ERROR 2');
       });
   }
   else if (req.body.result.action === 'user-searches-more-products') {
