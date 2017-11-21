@@ -1,0 +1,24 @@
+{
+  "name": "messenger-bot",
+  "version": "1.0.0",
+  "description": "Messenger Platform QuickStart Demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "keywords": [
+    "messenger",
+    "bot",
+    "quickstart"
+  ],
+  "author": "Pavan Ulichi <pulichi@richrelevance.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "body-parser": "*",
+    "cloudinary": "^1.9.0",
+    "dotenv": "^4.0.0",
+    "express": "*",
+    "request": "^2.72.0"
+  }
+}
