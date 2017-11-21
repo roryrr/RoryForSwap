@@ -234,6 +234,7 @@ app.post('/ai', (req, res) => {
       })
       .catch(function(err){
         console.log('Pavan api.ai, ERROR 2');
+        console.log(err);
       });
   }
   else if (req.body.result.action === 'user-searches-more-products') {
