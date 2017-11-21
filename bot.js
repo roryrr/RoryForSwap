@@ -720,7 +720,6 @@ function facetFilter(sid, pLoad){
   reqPromise(options)
     .then(function(body){
       //parsing the json response from RR cloud
-      body = JSON.parse(body);
       console.log("powerranger tori");
       facet_array = body.placements[0].facets[0].values;
       if (facet_array.length == 1) {
