@@ -688,11 +688,11 @@ function facetFilter(sid, pLoad){
   var pName = GLOBAL_PRODUCT_NAME;
   var facet, facetStart;
   if(facetAll == 'g'){
-    facet = 'gender';
+    facet = 'Gender (CLjx)';
     facetStart = 0;
   }
   else if (facetAll == 'c') {
-    facet = 'color';
+    facet = 'Colors (JZc1)';
     facetStart = GLOBAL_PRODUCT_COLOR_COUNT;
   }
   else if (facetAll == 'b') {
@@ -700,7 +700,7 @@ function facetFilter(sid, pLoad){
     facetStart = 0;
   }
   else if (facetAll == 's') {
-    facet = 'size';
+    facet = 'Size (YzN3)';
     facetStart = 0;
   }
   facet_array.length = 0;
