@@ -359,7 +359,6 @@ app.post('/ai', (req, res) => {
     reqPromise(options)
       .then(function(body){
         //parsing the json response from RR cloud
-        body = JSON.parse(body);
         console.log("powerranger");
         console.log(GLOBAL_PRODUCT_NAME);
         console.log(requesting);
