@@ -185,7 +185,7 @@ app.post('/ai', (req, res) => {
         GLOBAL_PRODUCT_SIZE = 'size:\"'+req.body.result.parameters['user-size']+'\"';
     }
     if (req.body.result.parameters['user-gender']) {
-        GLOBAL_PRODUCT_GENDER = 'gender:\"'+req.body.result.parameters['user-gender']+'\"';
+        GLOBAL_PRODUCT_GENDER = 'Gender (CLjx):\"'+req.body.result.parameters['user-gender']+'\"';
     }
     if (req.body.result.parameters['product-color']) {
         GLOBAL_PRODUCT_COLOR = 'Colors' + ' ' + '(JZc1):\"'+(req.body.result.parameters['product-color'].capitalize())+'\"';
@@ -329,7 +329,7 @@ app.post('/ai', (req, res) => {
       GLOBAL_PRODUCT_SIZE=GLOBAL_PRODUCT_SIZE;
     }
     if (req.body.result.contexts[0].parameters['user-gender']) {
-        GLOBAL_PRODUCT_GENDER = 'gender:\"'+req.body.result.contexts[0].parameters['user-gender']+'\"';
+        GLOBAL_PRODUCT_GENDER = 'Gender (CLjx):\"'+req.body.result.contexts[0].parameters['user-gender']+'\"';
     }
     else {
       GLOBAL_PRODUCT_GENDER=GLOBAL_PRODUCT_GENDER;
