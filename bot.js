@@ -485,7 +485,10 @@ function receivedMessage(event) {
                     body = JSON.parse(body);
                     console.log("powerranger");
                     console.log(GLOBAL_PRODUCT_NAME);
-                    if (body.placements[0].numFound == "0") {
+                    if(body.message == "Error occurred while performing the search") {
+                      sendTextMessage(GLOBAL_ID, "Please try again");
+                    }
+                    else if (body.placements[0].numFound == "0") {
                       sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.")
                     }
                     else{
