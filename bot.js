@@ -335,7 +335,7 @@ app.post('/ai', (req, res) => {
       GLOBAL_PRODUCT_GENDER=GLOBAL_PRODUCT_GENDER;
     }
     if (req.body.result.contexts[0].parameters['product-color']) {
-        GLOBAL_PRODUCT_COLOR = 'color:\"'+(req.body.result.contexts[0].parameters['product-color'].capitalize())+'\"';
+        GLOBAL_PRODUCT_COLOR = 'Colors' + ' ' + '(JZc1):\"'+(req.body.result.contexts[0].parameters['product-color'].capitalize())+'\"';
     }
     else {
       GLOBAL_PRODUCT_COLOR=GLOBAL_PRODUCT_COLOR;
