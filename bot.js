@@ -188,7 +188,7 @@ app.post('/ai', (req, res) => {
         GLOBAL_PRODUCT_GENDER = 'gender:\"'+req.body.result.parameters['user-gender']+'\"';
     }
     if (req.body.result.parameters['product-color']) {
-        GLOBAL_PRODUCT_COLOR = 'color:\"'+(req.body.result.parameters['product-color'].capitalize())+'\"';
+        GLOBAL_PRODUCT_COLOR = 'color (JZc1):\"'+(req.body.result.parameters['product-color'].capitalize())+'\"';
     }
     var rr_array =[];
     // var findMyStart = Math.floor((Math.random() * 30) + 1).toString();
