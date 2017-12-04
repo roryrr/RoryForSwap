@@ -541,6 +541,9 @@ function receivedMessage(event) {
         }
         console.log("message and payload for filter");
       }
+      else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), size_option_array)) {
+        sendTextMessage(senderID, "Filters all up");
+      }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
         var derivedPayload = message.quick_reply["payload"];
         v2_sendFilters(senderID, derivedPayload.slice(11));
