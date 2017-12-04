@@ -17,6 +17,7 @@ var GLOBAL_PRODUCT_NAME, GLOBAL_PRODUCT_BRAND, GLOBAL_PRODUCT_GENDER, GLOBAL_PRO
 var GLOBAL_PRODUCT_COLOR_COUNT;
 var productCountStart;
 var facet_array = [];
+var size_option_array = ['Heel Height (uylq)', 'Inseam/ Length (ublp)', 'Inseam/ Length (uyng)', 'Maternity Size (AAAH)', 'Mens Size (uuho)', 'Neckline (uamw)', 'Shoe Size (JPiE)', 'Shoe Size (umlq)', 'Shoe Size (ussk)', 'Size type (ugpx)', 'Size Type (ukqx)', 'Size (uupj)', 'Size (YzN3)', 'Womens Size (uehr)'];
 //apiai for NLP
 const apiaiApp = require('apiai')(APIAI_TOKEN);
 
@@ -259,25 +260,30 @@ app.post('/ai', (req, res) => {
           rows= "9";
     var  requesting = req_url + "?apiClientKey=" + apiClientKey + "&userId=" + userId + "&sessionId=" + sessionId + "&placements=" + placements + "&lang=en&" + "start=" + start + "&rows=9&query=" + query + "&filter=" + GLOBAL_PRODUCT_BRAND + "&filter=" + GLOBAL_PRODUCT_GENDER + "&filter=" + GLOBAL_PRODUCT_COLOR + "&filter=" + GLOBAL_PRODUCT_SIZE;
     console.log(requesting);
-      request(requesting, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-              //parsing the json response from RR cloud
-              body = JSON.parse(body);
-              console.log("powerranger");
-              console.log(GLOBAL_PRODUCT_NAME);
-              if (body.placements[0].numFound == "0") {
-                sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.")
-              }
-              else{
-                    rr_array = body.placements[0].docs;
-                    sendGenericMessageForSearch(GLOBAL_ID, rr_array);
-                    setTimeout(function() { v2_sendFilters(GLOBAL_ID, GLOBAL_PRODUCT_NAME) }, 3000);
-                    // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
-                  }
-          // The Description is:  "descriptive string"
-        } else {
-        console.log('Pavan api.ai, ERROR 3');
+    var options = {
+      uri: requesting,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; A1 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.116 Mobile Safari/537.36'
+        },
+      json: true
+    };
+    reqPromise(options)
+      .then(function(body){
+        console.log("powerranger");
+        console.log(GLOBAL_PRODUCT_NAME);
+        if (body.placements[0].numFound == "0") {
+          sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.")
         }
+        else{
+              rr_array = body.placements[0].docs;
+              sendGenericMessageForSearch(GLOBAL_ID, rr_array);
+              setTimeout(function() { v2_sendFilters(GLOBAL_ID, GLOBAL_PRODUCT_NAME) }, 3000);
+              // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
+            }
+    // The Description is:  "descriptive string"
+      })
+      .catch(function(err){
+        console.log('Pavan api.ai, ERROR 3');
       });
   }
   else if (req.body.result.action === 'user-requests-more-filter-options') {
@@ -522,7 +528,12 @@ function receivedMessage(event) {
       }
       else if(message.quick_reply && (message.quick_reply["payload"]).match(/(v2filter_)/g)){
         var derivedPayload = message.quick_reply["payload"];
-        facetFilter(senderID, derivedPayload);
+        if (message.quick_reply["payload"] == "v2filter_s") {
+          send_all_filters(senderID);
+        }
+        else {
+            facetFilter(senderID, derivedPayload);
+        }
         console.log("message and payload for filter");
       }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
@@ -820,6 +831,12 @@ function sendFacetOptions(recipientId, arrayHere, pName, facet){
     sendTextMessage(recipientId, "Oops, no items found. Try with a differnt search criteria. here!");
   }
 }
+
+function send_all_filters(recipientId){
+
+}
+
+
 function sendLoginOption(recipientId){
   var messageData = {
     messaging_type: 'RESPONSE',
