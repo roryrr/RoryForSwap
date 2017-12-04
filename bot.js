@@ -528,7 +528,7 @@ function receivedMessage(event) {
       }
       else if(message.quick_reply && (message.quick_reply["payload"]).match(/(v2filter_)/g)){
         var derivedPayload = message.quick_reply["payload"];
-        if (message.quick_reply["payload"] == "v2filter_s") {
+        if (message.quick_reply["payload"].match(/(v2filter_s)/g)) {
           send_all_filters(senderID);
         }
         else {
