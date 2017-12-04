@@ -877,6 +877,7 @@ function send_all_filters(recipientId){
     })
     .catch(function(err){
       console.log('Pavan api.ai, ERROR 10');
+      console.log(err);
     });
 }
 function arrayContains(needle, arrhaystack)
