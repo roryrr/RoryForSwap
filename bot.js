@@ -543,6 +543,42 @@ function receivedMessage(event) {
       }
       else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), size_option_array)) {
         sendTextMessage(senderID, "Filters all up");
+        facet_array.length = 0;
+        var req_url = process.env.FIND_URL;
+        var apiKey= process.env.API_KEY,
+              apiClientKey= process.env.API_CLIENT_KEY,
+              userId= process.env.USER_ID,
+              sessionId= process.env.SESSION_ID,
+              placements= process.env.PLACEMENTS_ID_FIND,
+              lang= "en",
+              query= GLOBAL_PRODUCT_NAME,
+              facet= message.quick_reply["payload"],
+              start= 0,
+              rows= "9";
+        var  requesting = req_url + "?apiClientKey=" + apiClientKey + "&userId=" + userId + "&sessionId=" + sessionId + "&placements=" + placements + "&lang=en&"+ "start=" + start + "&rows=9&query=" + query + "&filter=" + GLOBAL_PRODUCT_BRAND + "&filter=" + GLOBAL_PRODUCT_GENDER + "&filter=" + GLOBAL_PRODUCT_COLOR + "&filter=" + GLOBAL_PRODUCT_SIZE + "&facet=" + facet;
+        console.log(requesting);
+
+        var options = {
+          uri: requesting,
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; A1 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.116 Mobile Safari/537.36'
+            },
+          json: true
+        };
+        reqPromise(options)
+          .then(function(body){
+            //parsing the json response from RR cloud
+            console.log("powerranger shane");
+            facet_array = body.placements[0].facets[0].values;
+                sendFacetOptions(senderID, facet_array.slice(0,8), GLOBAL_PRODUCT_NAME, facet);
+
+                  // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
+        // The Description is:  "descriptive string"
+          })
+          .catch(function(err){
+            console.log('Pavan api.ai, ERROR 11');
+            console.log(err);
+          });
       }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
         var derivedPayload = message.quick_reply["payload"];
@@ -1564,7 +1600,7 @@ function callRrApi(sid, queryString){
         var rr_array =[];
         rr_array.length = 0;
           request({
-          uri: "https://integration.richrelevance.com/rrserver/api/find/v1/0de6056f0a2bc287?facet=&query="+queryString+"&lang=en&start=0&rows=5&placement=generic_page.rory_search&userId=ulichi&sessionId=mysession",
+          uri: "https://recs.richrelevance.com/rrserver/api/find/v1/0de6056f0a2bc287?facet=&query="+queryString+"&lang=en&start=0&rows=5&placement=generic_page.rory_search&userId=ulichi&sessionId=mysession",
           headers: {
             'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; A1 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.116 Mobile Safari/537.36'
             },
