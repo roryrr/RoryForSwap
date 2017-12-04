@@ -833,6 +833,7 @@ function sendFacetOptions(recipientId, arrayHere, pName, facet){
 }
 
 function send_all_filters(recipientId){
+  var rr_array =[];
   var derived_filter_array = [];
   var req_url = process.env.FIND_URL;
   var apiKey= process.env.API_KEY,
