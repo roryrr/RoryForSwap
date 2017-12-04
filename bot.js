@@ -870,6 +870,7 @@ function send_all_filters(recipientId){
                 derived_filter_array.push(i.facet);
               }
             });
+            sendFacetOptions(recipientId, derived_filter_array.slice(0, 8), GLOBAL_PRODUCT_NAME, "size");
             console.log("your array is here" + derived_filter_array);
             // setTimeout(function() { v2_sendFilters(GLOBAL_ID, GLOBAL_PRODUCT_NAME) }, 3000);
             // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
