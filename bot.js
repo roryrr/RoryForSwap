@@ -18,6 +18,7 @@ var GLOBAL_PRODUCT_COLOR_COUNT;
 var productCountStart;
 var facet_array = [];
 var size_option_array = ['Heel Height (uylq)', 'Inseam/ Length (ublp)', 'Inseam/ Length (uyng)', 'Maternity Size (AAAH)', 'Mens Size (uuho)', 'Neckline (uamw)', 'Shoe Size (JPiE)', 'Shoe Size (umlq)', 'Shoe Size (ussk)', 'Size type (ugpx)', 'Size Type (ukqx)', 'Size (uupj)', 'Size (YzN3)', 'Womens Size (uehr)'];
+var size_header;
 //apiai for NLP
 const apiaiApp = require('apiai')(APIAI_TOKEN);
 
@@ -183,7 +184,7 @@ app.post('/ai', (req, res) => {
         GLOBAL_PRODUCT_BRAND = 'brand:\"'+req.body.result.parameters['brand']+'\"';
     }
     if (req.body.result.parameters['user-size']) {
-        GLOBAL_PRODUCT_SIZE = 'size:\"'+req.body.result.parameters['user-size']+'\"';
+        GLOBAL_PRODUCT_SIZE = size_header + '\"'+req.body.result.parameters['user-size']+'\"';
     }
     if (req.body.result.parameters['user-gender']) {
         GLOBAL_PRODUCT_GENDER = 'Gender (CLjx):\"'+req.body.result.parameters['user-gender']+'\"';
@@ -333,7 +334,7 @@ app.post('/ai', (req, res) => {
       GLOBAL_PRODUCT_BRAND=GLOBAL_PRODUCT_BRAND;
     }
     if (req.body.result.contexts[0].parameters['user-size']) {
-        GLOBAL_PRODUCT_SIZE = 'size:\"'+req.body.result.contexts[0].parameters['user-size']+'\"';
+        GLOBAL_PRODUCT_SIZE = size_header+'\"'+req.body.result.contexts[0].parameters['user-size']+'\"';
     }
     else {
       GLOBAL_PRODUCT_SIZE=GLOBAL_PRODUCT_SIZE;
@@ -543,6 +544,7 @@ function receivedMessage(event) {
       }
       else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), size_option_array)) {
         sendTextMessage(senderID, "Filters all up");
+        size_header = message.quick_reply["payload"];
         facet_array.length = 0;
         var req_url = process.env.FIND_URL;
         var apiKey= process.env.API_KEY,
