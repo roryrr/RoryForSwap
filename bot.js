@@ -316,6 +316,10 @@ app.post('/ai', (req, res) => {
       }
 
     }
+    if (req.body.result.contexts[0].parameters['size-types']) {
+      sendTextMessage(GLOBAL_ID, "oooooaaaaa");
+    }
+    else {
     if (req.body.result.contexts[0].parameters['product-name']) {
         GLOBAL_PRODUCT_NAME = req.body.result.contexts[0].parameters['product-name'];
     }
@@ -346,6 +350,7 @@ app.post('/ai', (req, res) => {
     else {
       GLOBAL_PRODUCT_COLOR=GLOBAL_PRODUCT_COLOR;
     }
+  }
     var req_url = process.env.FIND_URL;
     var apiKey= process.env.API_KEY,
           apiClientKey= process.env.API_CLIENT_KEY,
@@ -372,7 +377,7 @@ app.post('/ai', (req, res) => {
         console.log(GLOBAL_PRODUCT_NAME);
         console.log(requesting);
         if (body.placements[0].numFound == "0") {
-          sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.")
+          sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.");
         }
         else{
               rr_array = body.placements[0].docs;
