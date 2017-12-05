@@ -14,7 +14,7 @@ const path = require('path');
 var reqPromise = require('request-promise');
 var fileSystem = require('file-system');
 var all_facets_are_here = fileSystem.readFileSync('hii.txt').toString().split("\n");
-for(i in all_facets_are_here) {
+for(let i in all_facets_are_here) {
     console.log(all_facets_are_here[i]);
 }
 var GLOBAL_ID;
