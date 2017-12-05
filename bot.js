@@ -589,6 +589,7 @@ function receivedMessage(event) {
       }
       else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), all_facets_are_here)) {
         console.log("almost there...few steps left");
+        facetFilter(senderID, "hi", message.quick_reply["payload"]);
       }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
         var derivedPayload = message.quick_reply["payload"];
@@ -758,7 +759,7 @@ function sendTextMessage(recipientId, messageText) {
 }
 
 //Facet filtering function
-function facetFilter(sid, pLoad){
+function facetFilter(sid, pLoad, sizeHdr){
   var facetAll = pLoad.charAt(9);
   var pName = GLOBAL_PRODUCT_NAME;
   var facet, facetStart;
@@ -774,8 +775,8 @@ function facetFilter(sid, pLoad){
     facet = 'brand';
     facetStart = 0;
   }
-  else if (facetAll == 's') {
-    facet = 'Size (YzN3)';
+  else{
+    facet = sizeHdr;
     facetStart = 0;
   }
   facet_array.length = 0;
