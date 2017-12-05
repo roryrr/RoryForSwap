@@ -587,7 +587,7 @@ function receivedMessage(event) {
             console.log(err);
           });
       }
-      else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), fileSystem.readFileSync('hii.txt').toString().split("\n"))) {
+      else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), fileSystem.readFile('hii.txt').toString().split("\n"))) {
         console.log("almost there...few steps left");
       }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
