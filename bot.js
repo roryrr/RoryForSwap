@@ -587,6 +587,41 @@ function receivedMessage(event) {
       else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), all_facets_are_here)) {
         console.log("almost there...few steps left");
         //facetFilter(senderID, "hi", message.quick_reply["payload"]);
+        console.log("normal message in sizes");
+        console.log("api.ai invoked" + message.quick_reply["payload"]);
+        let apiai = apiaiApp.textRequest(message.quick_reply["payload"], {
+            sessionId: 'tabby_cat', // use any arbitrary id
+            contexts: [
+              {
+                name: "generic",
+                parameters: {
+                facebook_user_id: senderID
+            }
+          }
+          ]
+          });
+
+          apiai.on('response', (response) => {
+            // Got a response from api.ai. Let's POST to Facebook Messenger
+            let aiText = response.result.fulfillment.speech;
+            var messageData = {
+              messaging_type: 'RESPONSE',
+              recipient: {
+                id: senderID
+              },
+              message: {
+                text: aiText
+              }
+            };
+            // seenMessage();
+            callSendAPI(messageData);
+          });
+
+          apiai.on('error', (error) => {
+            console.log("Pikachu" + error);
+          });
+
+          apiai.end();
       }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
         var derivedPayload = message.quick_reply["payload"];
