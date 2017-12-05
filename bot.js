@@ -322,9 +322,6 @@ app.post('/ai', (req, res) => {
       }
 
     }
-    if (req.body.result.contexts[0].parameters['size-types']) {
-      sendTextMessage(GLOBAL_ID, "oooooaaaaa");
-    }
     else {
     if (req.body.result.contexts[0].parameters['product-name']) {
         GLOBAL_PRODUCT_NAME = req.body.result.contexts[0].parameters['product-name'];
