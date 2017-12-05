@@ -106,6 +106,47 @@ app.post('/ai', (req, res) => {
   console.log(req.body.result);
   if (arrayContains(req.body.result.resolvedQuery, all_facets_are_here)) {
     console.log("Harry Potter and the Prisnoer");
+    var rr_array = [];
+    GLOBAL_PRODUCT_SIZE = size_header+'\"'+req.body.result.resolvedQuery+'\"';
+    var req_url = process.env.FIND_URL;
+    var apiKey= process.env.API_KEY,
+          apiClientKey= process.env.API_CLIENT_KEY,
+          userId= process.env.USER_ID,
+          sessionId= process.env.SESSION_ID,
+          placements= process.env.PLACEMENTS_ID_FIND,
+          lang= "en",
+          query= GLOBAL_PRODUCT_NAME,
+          start= 0,
+          rows= "9";
+    var  requesting = req_url + "?apiClientKey=" + apiClientKey + "&userId=" + userId + "&sessionId=" + sessionId + "&placements=" + placements + "&lang=en&start=0&rows=9&query=" + query + "&filter=" + GLOBAL_PRODUCT_BRAND + "&filter=" + GLOBAL_PRODUCT_GENDER + "&filter=" + GLOBAL_PRODUCT_COLOR + "&filter=" + GLOBAL_PRODUCT_SIZE;
+    console.log(requesting);
+    var options = {
+      uri: requesting,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 5.1.1; A1 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.116 Mobile Safari/537.36'
+        },
+      json: true
+      };
+    reqPromise(options)
+      .then(function(body){
+        //parsing the json response from RR cloud
+        console.log("powerranger Hunter");
+        console.log(GLOBAL_PRODUCT_NAME);
+        console.log(requesting);
+        if (body.placements[0].numFound == "0") {
+          sendTextMessage(GLOBAL_ID, "Oops, looks like we don’t have anything that fits that description.");
+        }
+        else{
+              rr_array = body.placements[0].docs;
+              sendGenericMessageForSearch(GLOBAL_ID, rr_array);
+              setTimeout(function() { v2_sendFilters(GLOBAL_ID, GLOBAL_PRODUCT_NAME) }, 3000);
+              // setTimeout(function() { v2_restartAnytime(GLOBAL_ID) }, 7000);
+            }
+    // The Description is:  "descriptive string"
+      })
+      .catch(function(err){
+        console.log('Pavan api.ai, ERROR 14');
+      });
   }
   else {
   if (req.body.result.action === 'weather') {
