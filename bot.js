@@ -14,9 +14,9 @@ const path = require('path');
 var reqPromise = require('request-promise');
 var fileSystem = require('file-system');
 var all_facets_are_here = fileSystem.readFileSync('hii.txt').toString().split("\n");
-for(let i in all_facets_are_here) {
-    console.log(all_facets_are_here[i]);
-}
+// for(let i in all_facets_are_here) {
+//     console.log(all_facets_are_here[i]);
+// }
 var GLOBAL_ID;
 var GLOBAL_PRODUCT_NAME, GLOBAL_PRODUCT_BRAND, GLOBAL_PRODUCT_GENDER, GLOBAL_PRODUCT_COLOR, GLOBAL_PRODUCT_SIZE;
 var GLOBAL_PRODUCT_COLOR_COUNT;
@@ -586,6 +586,9 @@ function receivedMessage(event) {
             console.log('Pavan api.ai, ERROR 11');
             console.log(err);
           });
+      }
+      else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), all_facets_are_here)) {
+        console.log("almost there...few steps left");
       }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
         var derivedPayload = message.quick_reply["payload"];
