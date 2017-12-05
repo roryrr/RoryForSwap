@@ -589,7 +589,7 @@ function receivedMessage(event) {
       }
       else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), all_facets_are_here)) {
         console.log("almost there...few steps left");
-        facetFilter(senderID, "hi", message.quick_reply["payload"]);
+        //facetFilter(senderID, "hi", message.quick_reply["payload"]);
       }
       else if (message.quick_reply && (message.quick_reply["payload"]).match(/(sendFilters)/g)) {
         var derivedPayload = message.quick_reply["payload"];
