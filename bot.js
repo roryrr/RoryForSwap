@@ -1710,6 +1710,7 @@ function callRrApi(sid, queryString){
     })
     .catch(function(err){
       sendTextMessage(sid, 'Pavan, ERROR');
+      console.log(err);
     });
       }
 
