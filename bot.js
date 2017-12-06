@@ -1688,6 +1688,7 @@ function callRrApi(sid, queryString){
       },
     json: true
   };
+  console.log("options are here: " + options);
   reqPromise(options)
     .then(function(body){
       if(body.status == "error"){
