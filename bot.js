@@ -1716,7 +1716,7 @@ function callRrApi(sid, queryString){
         console.log(err);
       });
 
-   }, 2000);
+   }, 5000);
       }
 
       //Block that call Find api
