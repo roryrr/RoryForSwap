@@ -1223,49 +1223,49 @@ function v2_sendCategories(recipientId){
         content_type:"text",
         title:"Kids Apparel",
         payload:"v2_swap-womens-beauty",
-        image_url:"https://png.icons8.com/makeup/color/24"
+        image_url:"https://png.icons8.com/children/ios7/25 https://png.icons8.com/makeup/color/24"
       },
       {
         content_type:"text",
         title:"Baby Apparel",
         payload:"v2_swap-kids",
-        image_url:"https://png.icons8.com/children/ios7/25"
+        image_url:"https://png.icons8.com/baby/color/25/000000"
       },
       {
         content_type:"text",
         title:"Maternity Apparel",
         payload:"v2_swap-home",
-        image_url:"https://png.icons8.com/home/office/30"
+        image_url:"https://png.icons8.com/mother's-health/color/34/000000"
       },
       {
         content_type:"text",
         title:"Decor",
         payload:"v2_swap-women",
-        image_url:"https://png.icons8.com/female-profile/color/24"
+        image_url:"https://png.icons8.com/home-decorations/office/25/000000"
       },
       {
         content_type:"text",
         title:"Movies & Books",
         payload:"v2_swap-men",
-        image_url:"https://png.icons8.com/user/color/24"
+        image_url:"https://png.icons8.com/movies-folder/dusk/25/000000"
       },
       {
         content_type:"text",
         title:"Sports & Outdoor",
         payload:"v2_swap-womens-beauty",
-        image_url:"https://png.icons8.com/makeup/color/24"
+        image_url:"https://png.icons8.com/track-and-field/color/25/000000"
       },
       {
         content_type:"text",
         title:"Toys & Games",
         payload:"v2_swap-kids",
-        image_url:"https://png.icons8.com/children/ios7/25"
+        image_url:"https://png.icons8.com/fidget-spinner/ios7/25/000000"
       },
       {
         content_type:"text",
         title:"Baby Gear",
         payload:"v2_swap-home",
-        image_url:"https://png.icons8.com/home/office/30"
+        image_url:"https://png.icons8.com/pram-filled/ios7/25/000000"
       }
     ]
   }
