@@ -1692,6 +1692,7 @@ function callRrApi(sid, queryString){
   setTimeout(function() {
     reqPromise(options)
       .then(function(body){
+        console.log("body is here" +body);
         if(body.status == "error"){
           console.log("nenu cheppala");
         }
