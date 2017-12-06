@@ -1688,11 +1688,11 @@ function callRrApi(sid, queryString){
       },
     json: true
   };
-  console.log("options are here: " + options.uri);
+  console.log("options are here: " + options.uri + options.qs);
   setTimeout(function() {
     reqPromise(options)
       .then(function(body){
-        console.log("body is here" +body);
+        console.log("body is here" +body.placements);
         if(body.status == "error"){
           console.log("nenu cheppala");
         }
