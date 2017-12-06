@@ -1688,7 +1688,7 @@ function callRrApi(sid, queryString){
       },
     json: true
   };
-  console.log("options are here: " + options);
+  console.log("options are here: " + options.uri);
   setTimeout(function() {
     reqPromise(options)
       .then(function(body){
