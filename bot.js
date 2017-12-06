@@ -1209,32 +1209,62 @@ function v2_sendCategories(recipientId){
     quick_replies:[
       {
         content_type:"text",
-        title:"Women",
-        payload:"v2_BNY-women",
+        title:"Women's Apparel",
+        payload:"v2_swap-women",
         image_url:"https://png.icons8.com/female-profile/color/24"
       },
       {
         content_type:"text",
-        title:"Men",
-        payload:"v2_BNY-men",
+        title:"Men's Apparel",
+        payload:"v2_swap-men",
         image_url:"https://png.icons8.com/user/color/24"
       },
       {
         content_type:"text",
-        title:"Beauty",
-        payload:"v2_BNY-womens-beauty",
+        title:"Kids Apparel",
+        payload:"v2_swap-womens-beauty",
         image_url:"https://png.icons8.com/makeup/color/24"
       },
       {
         content_type:"text",
-        title:"Kids",
-        payload:"v2_BNY-kids",
+        title:"Baby Apparel",
+        payload:"v2_swap-kids",
         image_url:"https://png.icons8.com/children/ios7/25"
       },
       {
         content_type:"text",
-        title:"Home",
-        payload:"v2_BNY-home",
+        title:"Maternity Apparel",
+        payload:"v2_swap-home",
+        image_url:"https://png.icons8.com/home/office/30"
+      },
+      {
+        content_type:"text",
+        title:"Decor",
+        payload:"v2_swap-women",
+        image_url:"https://png.icons8.com/female-profile/color/24"
+      },
+      {
+        content_type:"text",
+        title:"Movies & Books",
+        payload:"v2_swap-men",
+        image_url:"https://png.icons8.com/user/color/24"
+      },
+      {
+        content_type:"text",
+        title:"Sports & Outdoor",
+        payload:"v2_swap-womens-beauty",
+        image_url:"https://png.icons8.com/makeup/color/24"
+      },
+      {
+        content_type:"text",
+        title:"Toys & Games",
+        payload:"v2_swap-kids",
+        image_url:"https://png.icons8.com/children/ios7/25"
+      },
+      {
+        content_type:"text",
+        title:"Baby Gear",
+        payload:"v2_swap-home",
         image_url:"https://png.icons8.com/home/office/30"
       }
     ]
