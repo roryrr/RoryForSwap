@@ -574,7 +574,7 @@ function receivedMessage(event) {
           sendTextMessage(senderID, "-Type keywords to find items: e.g. 'shoes’/‘Gucci'/'Show me suits'\n-Type ‘favorites’ to bring up the favorites list\n-Hit the Restart button to return to the main menu");
           // setTimeout(function() { v2_restartAnytime(senderID) }, 7000);
         }
-        else if (derivedPayload.match(/(v2_BNY-)/g)) {
+        else if (derivedPayload.match(/(v2_swap-)/g)) {
           callRrApi(senderID, derivedPayload.slice(3));
         }
       }
@@ -1210,61 +1210,61 @@ function v2_sendCategories(recipientId){
       {
         content_type:"text",
         title:"Women's Apparel",
-        payload:"v2_swap-women",
+        payload:"v2_swap-Uxkc",
         image_url:"https://png.icons8.com/female-profile/color/24"
       },
       {
         content_type:"text",
         title:"Men's Apparel",
-        payload:"v2_swap-men",
+        payload:"v2_swap-Uppj",
         image_url:"https://png.icons8.com/user/color/24"
       },
       {
         content_type:"text",
         title:"Kids Apparel",
-        payload:"v2_swap-womens-beauty",
-        image_url:"https://png.icons8.com/children/ios7/25 https://png.icons8.com/makeup/color/24"
+        payload:"v2_swap-Uwly",
+        image_url:"https://png.icons8.com/children/ios7/25"
       },
       {
         content_type:"text",
         title:"Baby Apparel",
-        payload:"v2_swap-kids",
+        payload:"v2_swap-Utqx",
         image_url:"https://png.icons8.com/baby/color/25/000000"
       },
       {
         content_type:"text",
         title:"Maternity Apparel",
-        payload:"v2_swap-home",
+        payload:"v2_swap-Uygq",
         image_url:"https://png.icons8.com/mother's-health/color/34/000000"
       },
       {
         content_type:"text",
         title:"Decor",
-        payload:"v2_swap-women",
+        payload:"v2_swap-cCMX",
         image_url:"https://png.icons8.com/home-decorations/office/25/000000"
       },
       {
         content_type:"text",
         title:"Movies & Books",
-        payload:"v2_swap-men",
+        payload:"v2_swap-cGA7",
         image_url:"https://png.icons8.com/movies-folder/dusk/25/000000"
       },
       {
         content_type:"text",
         title:"Sports & Outdoor",
-        payload:"v2_swap-womens-beauty",
+        payload:"v2_swap-cCWr",
         image_url:"https://png.icons8.com/track-and-field/color/25/000000"
       },
       {
         content_type:"text",
         title:"Toys & Games",
-        payload:"v2_swap-kids",
+        payload:"v2_swap-cCa7",
         image_url:"https://png.icons8.com/fidget-spinner/ios7/25/000000"
       },
       {
         content_type:"text",
         title:"Baby Gear",
-        payload:"v2_swap-home",
+        payload:"v2_swap-cY4o",
         image_url:"https://png.icons8.com/pram-filled/ios7/25/000000"
       }
     ]
@@ -1643,7 +1643,7 @@ function callRrApi(sid, queryString){
           sessionId: process.env.SESSION_ID,
           placements: process.env.PLACEMENTS_ID};
   }
-  else if(queryString.match(/(BNY-)/g)){
+  else if(queryString.match(/(swap-)/g)){
     var req_url = process.env.STAGING_URL;
     var queryParameters = { apiKey: process.env.API_KEY,
           apiClientKey: process.env.API_CLIENT_KEY,
@@ -1652,7 +1652,7 @@ function callRrApi(sid, queryString){
           userId: process.env.USER_ID,
           sessionId: process.env.SESSION_ID,
           placements: process.env.PLACEMENTS_ID_CAT,
-          categoryId: queryString};
+          categoryId: queryString.slice(5)};
   }
   else if (queryString.match(/(similar)/g)) {
     var req_url = process.env.STAGING_URL;
