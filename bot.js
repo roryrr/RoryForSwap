@@ -1811,6 +1811,7 @@ function callRrApi(sid, queryString){
                 })
                 .catch(function(err){
                   console.log("api call failed");
+                  console.log(err);
                   sendTextMessage(sid, "Please try again");
                 });
               // request({
