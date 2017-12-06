@@ -1689,30 +1689,33 @@ function callRrApi(sid, queryString){
     json: true
   };
   console.log("options are here: " + options);
-  reqPromise(options)
-    .then(function(body){
-      if(body.status == "error"){
-        console.log("nenu cheppala");
-      }
-      else {
+  setTimeout(function() {
+    reqPromise(options)
+      .then(function(body){
+        if(body.status == "error"){
+          console.log("nenu cheppala");
+        }
+        else {
 
-      if (queryString.match(/(favorite)/g)) {
-        console.log("undertaker wwe");
-        rr_array = body.products;
-        sendGenericMessageForFavoriteItems(sid, rr_array);
+        if (queryString.match(/(favorite)/g)) {
+          console.log("undertaker wwe");
+          rr_array = body.products;
+          sendGenericMessageForFavoriteItems(sid, rr_array);
+        }
+        else {
+              rr_array = body.placements[0].recommendedProducts;
+              sendGenericMessage(sid, rr_array);
+            }
+            // setTimeout(function() { v2_restartAnytime(sid) }, 7000);
+        // The Description is:  "descriptive string"
       }
-      else {
-            rr_array = body.placements[0].recommendedProducts;
-            sendGenericMessage(sid, rr_array);
-          }
-          // setTimeout(function() { v2_restartAnytime(sid) }, 7000);
-      // The Description is:  "descriptive string"
-    }
-    })
-    .catch(function(err){
-      sendTextMessage(sid, 'Pavan, ERROR');
-      console.log(err);
-    });
+      })
+      .catch(function(err){
+        sendTextMessage(sid, 'Pavan, ERROR');
+        console.log(err);
+      });
+
+   }, 2000);
       }
 
       //Block that call Find api
