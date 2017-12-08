@@ -908,8 +908,8 @@ function sendFacetOptions(recipientId, arrayHere, pName, facet){
       payload: "sendFilters"+pName
     },{
       content_type:"text",
-      title: "any size",
-      payload: "any size"
+      title: "any " + facet.replace(/\(.*?\)/g, ""),
+      payload: "any" + facet.replace(/\(.*?\)/g, "")
     });
   arrayHere.forEach(i=>{
      itemList.push({
@@ -1548,7 +1548,7 @@ function sendGenericMessageForSearch(recipientId, arrayHere) {
     {
       "title":"Rory",
       "item_url": process.env.BNY_HOME,
-      "image_url":"https://res.cloudinary.com/goodsearch/image/upload/v1436553720/hi_resolution_merchant_logos/barneys-new-york_coupons.jpg",
+      "image_url":"http://res.cloudinary.com/ulichitr/image/upload/b_rgb:ffffff,c_scale,h_464,q_100,w_600/v1512763562/swap-com_lbjzve.png",
       "buttons" : [
           {
             "type": "postback",
