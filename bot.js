@@ -564,6 +564,7 @@ function receivedMessage(event) {
             })
             .catch(function(err){
               console.log('Pavan api.ai, ERROR 6');
+              console.log(err);
             });
         }
         else if (derivedPayload == "v2_restart") {
