@@ -909,8 +909,8 @@ function sendFacetOptions(recipientId, arrayHere, pName, facet){
       payload: "sendFilters"+pName
     },{
       content_type:"text",
-      title: "any " + facet,
-      payload: "any" + facet
+      title: "any " + facet.replace(/\(.*?\)/g, ""),
+      payload: "any" + facet.replace(/\(.*?\)/g, "")
     });
   arrayHere.forEach(i=>{
      itemList.push({
