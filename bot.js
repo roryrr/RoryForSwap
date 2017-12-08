@@ -590,7 +590,6 @@ function receivedMessage(event) {
         console.log("message and payload for filter");
       }
       else if (message.quick_reply && arrayContains((message.quick_reply["payload"]), size_option_array)) {
-        sendTextMessage(senderID, "Filters all up");
         size_header = message.quick_reply["payload"];
         facet_array.length = 0;
         var req_url = process.env.FIND_URL;
@@ -1024,7 +1023,7 @@ function sendSizeFacets(rid, arrayHere){
   arrayHere.forEach(i=>{
      itemList.push({
          content_type:"text",
-         title: i,
+         title: i.replace(/\(.*?\)/g, ""),
          payload: i
        });
   });
