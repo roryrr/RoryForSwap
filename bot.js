@@ -107,7 +107,7 @@ app.post('/ai', (req, res) => {
   if (arrayContains(req.body.result.resolvedQuery, all_facets_are_here)) {
     console.log("Harry Potter and the Prisnoer");
     var rr_array = [];
-    GLOBAL_PRODUCT_SIZE = size_header+'\"'+req.body.result.resolvedQuery+'\"';
+    GLOBAL_PRODUCT_SIZE = size_header+':\"'+req.body.result.resolvedQuery+'\"';
     var req_url = process.env.FIND_URL;
     var apiKey= process.env.API_KEY,
           apiClientKey= process.env.API_CLIENT_KEY,
