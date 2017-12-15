@@ -1170,7 +1170,7 @@ function v2_showFindList(recipientId) {
       {
         content_type:"text",
         title:"Sweatshirts",
-        payload:"Sweaters",
+        payload:"Sweatshirts",
         image_url:"https://png.icons8.com/jacket/color/24"
       },
       {
