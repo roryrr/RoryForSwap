@@ -1548,7 +1548,7 @@ function sendGenericMessageForSearch(recipientId, arrayHere) {
     {
       "title":"Rory",
       "item_url": process.env.BNY_HOME,
-      "image_url":"http://res.cloudinary.com/ulichitr/image/upload/b_rgb:ffffff,c_scale,h_22,q_100,w_35/v1512763562/swap-com_lbjzve.png",
+      "image_url":"http://res.cloudinary.com/ulichitr/image/upload/b_rgb:ffffff,c_pad,h_500,q_100,w_955/v1513371286/swap.com-logo_roqxkk.jpg",
       "buttons" : [
           {
             "type": "postback",
