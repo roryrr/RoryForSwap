@@ -1548,7 +1548,7 @@ function sendGenericMessageForSearch(recipientId, arrayHere) {
     {
       "title":"Rory",
       "item_url": process.env.BNY_HOME,
-      "image_url":"http://res.cloudinary.com/ulichitr/image/upload/b_rgb:ffffff,c_scale,h_225,q_100,w_350/v1512763562/swap-com_lbjzve.png",
+      "image_url":"http://res.cloudinary.com/ulichitr/image/upload/b_rgb:ffffff,c_scale,h_22,q_100,w_35/v1512763562/swap-com_lbjzve.png",
       "buttons" : [
           {
             "type": "postback",
