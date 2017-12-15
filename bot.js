@@ -286,6 +286,7 @@ app.post('/ai', (req, res) => {
     // The Description is:  "descriptive string"
       })
       .catch(function(err){
+        console.log("rooooobooo" + err.message);
         console.log('api.ai, ERROR 2');
         console.log(err);
       });
