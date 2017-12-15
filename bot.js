@@ -332,6 +332,7 @@ app.post('/ai', (req, res) => {
     // The Description is:  "descriptive string"
       })
       .catch(function(err){
+        sendTextMessage(GLOBAL_ID, "Please try again");
         console.log('api.ai, ERROR 3');
       });
   }
@@ -434,6 +435,7 @@ app.post('/ai', (req, res) => {
     // The Description is:  "descriptive string"
       })
       .catch(function(err){
+        sendTextMessage(GLOBAL_ID, "Please try again");
         console.log('api.ai, ERROR 4');
       });
   }
